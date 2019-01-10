@@ -25,6 +25,9 @@ spring:
       default
   hateoas: 
     use-hal-as-default-json-media-type: false
+  datasource:
+    initialize: false #通常spring-boot需要靠他，才不會將   
+    
 management:
   security:
      enabled: false

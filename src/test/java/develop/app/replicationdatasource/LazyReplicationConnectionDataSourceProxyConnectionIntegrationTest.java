@@ -26,13 +26,13 @@ public class LazyReplicationConnectionDataSourceProxyConnectionIntegrationTest {
                 .setName("writeDb")
                 .setType(EmbeddedDatabaseType.H2)
                 .setScriptEncoding("UTF-8")
-                .addScript("classpath:/writedb.sql").build();
+                .addScript("classpath:/database/writedb.sql").build();
 
         DataSource readDataSource = new EmbeddedDatabaseBuilder()
                 .setName("readDb")
                 .setType(EmbeddedDatabaseType.H2)
                 .setScriptEncoding("UTF-8")
-                .addScript("classpath:/readdb.sql").build();
+                .addScript("classpath:/database/readdb.sql").build();
         
         replicationDataSource = new LazyReplicationConnectionDataSourceProxy(writeDataSource, readDataSource);
     }

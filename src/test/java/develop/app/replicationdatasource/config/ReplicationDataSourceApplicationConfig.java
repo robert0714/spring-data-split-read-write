@@ -13,6 +13,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import develop.app.replicationdatasource.jpa.User;
+import develop.app.FlexyPoolConfiguration;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -48,5 +49,10 @@ public class ReplicationDataSourceApplicationConfig {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
         return new PersistenceExceptionTranslationPostProcessor();
+    }
+    
+    @Bean
+    public FlexyPoolConfiguration FlexyPoolConfiguration() {
+    	return new FlexyPoolConfiguration();
     }
 }
