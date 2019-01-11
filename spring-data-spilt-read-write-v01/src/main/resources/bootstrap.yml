@@ -26,7 +26,20 @@ spring:
   hateoas: 
     use-hal-as-default-json-media-type: false
   datasource:
-    initialize: false #通常spring-boot需要靠他，才不會將   
+    initialize: false #通常spring-boot需要靠他，才不會將 
+  zipkin:
+    locator:
+      discovery:
+        enabled: false
+    enabled: true
+    base-url: http://localhost:9411
+    compression:
+      enabled: false
+    sender:
+      type: web
+    message-timeout: 5  
+#    stream:
+#      default-binder: test  
     
 management:
   security:

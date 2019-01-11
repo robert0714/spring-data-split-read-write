@@ -10,7 +10,7 @@
 **/**/**/.settings/
 **/**/**/app.log
 **/**/**/target
-
+**/**/mylog.log
 
 .gitignore.swp
 .gradle/

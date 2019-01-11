@@ -21,7 +21,7 @@ logging:
   level:
     com.netflix: WARN
     org.springframework.web: WARN
-    develop.hamipoint: DEBUG
+    develop.app: DEBUG
 
 
 
