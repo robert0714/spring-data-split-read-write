@@ -1,0 +1,52 @@
+spring:
+  thymeleaf:
+    enabled: false     # Disable Thymeleaf
+  sleuth:
+    sampler:
+      percentage: 1
+  cloud:
+    config: 
+      enabled: false
+      discovery:
+        enabled: false
+    inetutils:
+      ignoredInterfaces:
+        - docker0
+        - veth.*
+        - enp0s3
+        - lo
+      preferredNetworks:
+        - 192.168.*.*
+        - 172.21.1.*
+  application:
+    name: hami-service
+  profiles:
+    active:
+      default
+  hateoas: 
+    use-hal-as-default-json-media-type: false
+  datasource:
+    initialize: false #通常spring-boot需要靠他，才不會將  writeDataSource,readDataSource ,datasSource諢亂 
+    
+management:
+  security:
+     enabled: false
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false 
+hystrix:
+  metrics:
+    enabled: true
+    polling-interval-ms: 1000
+    
+    
+# Register P6LogFactory to log JDBC events
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
+      multiline:  true   # Use com.p6spy.engine.spy.appender.MultiLineFormat instead of com.p6spy.engine.spy.appender.SingleLineFormat
+      logging:   slf4j # Use logging for default listeners [slf4j, sysout, file]
+      log-file:  spy.log # Log file to use (only with logging=file)
+      # log-format:          # Custom log format, if specified com.p6spy.engine.spy.appender.CustomLineFormat will be used with this log format  

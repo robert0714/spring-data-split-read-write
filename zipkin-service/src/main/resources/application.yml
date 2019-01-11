@@ -1,0 +1,62 @@
+spring:  
+  application:
+    name: zipkin-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
+#      - io.micrometer.spring.autoconfigure.export.prometheus.PrometheusMetricsExportAutoConfiguration
+  cloud:
+    inetutils:
+      ignoredInterfaces:
+        - docker0
+        - veth.*
+        - enp0s3
+        - lo
+      preferredNetworks:
+        - 192.168.*.*
+        - 172.21.1.*
+server:  
+  port: ${PORT:9411}
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types:
+    - application/json
+    - application/xml
+    - text/html
+    - text/xml
+    - text/plain
+    - application/javascript
+    - text/css
+eureka:
+  client:
+    enabled: false
+    serviceUrl:
+      #defaultZone: ${vcap.services.${PREFIX:}eureka.credentials.uri:http://user:password@localhost:8761}/eureka/
+      defaultZone: http://localhost:8761/eureka/
+#外部參數--eureka.client.service-url.default-zone有時是吃不進去的，需要改成駝峰式--eureka.client.serviceUrl.defaultZone
+ 
+management: 
+  endpoints:    
+    web:      
+      exposure:
+#        include: "*"  
+        exclude: "*"  #<2>      
+  endpoint:
+    beans:
+      enabled: false
+    prometheus:
+      enabled: false
+    health:
+      show-details: ALWAYS
+    refresh:
+      enabled: false
+    metrics:
+      enabled: false
+    env:
+      enabled: false
+    flyway:
+      enabled: false
+
+      
