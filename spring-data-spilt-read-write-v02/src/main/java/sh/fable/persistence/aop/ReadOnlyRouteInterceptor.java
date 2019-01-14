@@ -21,8 +21,11 @@ public class ReadOnlyRouteInterceptor {
 
 	private static final Logger logger = LoggerFactory.getLogger(ReadOnlyRouteInterceptor.class);
 
+	/**
+	 * 針對是實作的class上有@annotation(transactional)進行AOP，而不是interface上的@annotation(transactional)上作用
+	 * */
 	@Around("@annotation(transactional)")
-	public Object proceed(ProceedingJoinPoint proceedingJoinPoint, Transactional transactional) throws Throwable {
+	public Object proceedImplentedClass(ProceedingJoinPoint proceedingJoinPoint, Transactional transactional) throws Throwable {
 		try {
 			if (transactional.readOnly()) {
 				RoutingDataSource.setReplicaRoute();

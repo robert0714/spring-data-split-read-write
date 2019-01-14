@@ -1,5 +1,7 @@
 package sh.fable.book;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ public class BookService {
 
 	@Transactional(readOnly = true)
 	public Book get(final Integer id) {
-		return bookRepository.findOne(id);
+		 Optional<Book> data = bookRepository.findById(id);
+		return data.get() ;
 	}
 }
